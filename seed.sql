@@ -1,11 +1,11 @@
-DROP DATABASE IF EXISTS --database;
+DROP DATABASE IF EXISTS tracker_db;
 
-CREATE DATABASE --database;
+CREATE DATABASE tracker_db;
 
-USE --database;
+USE tracker_db;
 
 CREATE TABLE department (
-  id INT PRIMARY KEY NOT NULL,
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   name VARCHAR(30) 
   
 );
@@ -26,11 +26,4 @@ CREATE TABLE employee (
     manager_id INT
 );
 
-INSERT INTO department (name)
-VALUES ();
 
-INSERT INTO role (title, salary, department_id)
-VALUES ();
-
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VLAUES();
