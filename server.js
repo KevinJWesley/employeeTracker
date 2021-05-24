@@ -19,6 +19,14 @@ connection.connect((err) => {
   start();
 });
 
+// Build a command-line application that at a minimum allows the user to:
+
+// Add departments, roles, employees
+
+// View departments, roles, employees
+
+// Update employee roles
+
 // command-line application that allows the user to:
 const start = () => {
   inquirer
@@ -29,8 +37,9 @@ const start = () => {
       choices: [
         "View Departments",
         "Add Departments",
-        "Update Employee Roles",
+        "Add Roles",
         "Add Employee",
+        "Update Roles",
       ],
     })
     .then((answer) => {
@@ -38,18 +47,17 @@ const start = () => {
         viewDepartments();
       } else if (answer.mainmenu === "Add Departments") {
         addDepartments();
-      } else if (answer.mainmenu === "Update Employee Roles") {
+      } else if (answer.mainmenu === "Add Roles") {
         addRoles();
       } else if (answer.mainmenu === "Add Employee") {
         addEmployee();
+      } else if (answer.mainmenu === "Update Roles") {
+        updateRoles();
       } else {
         connection.end();
       }
     });
 };
-
-// View Employees
-const viewEmployees = () => {};
 
 // * View Departments
 const viewDepartments = () => {
@@ -58,6 +66,9 @@ const viewDepartments = () => {
 
 // View Roles
 const viewRoles = () => {};
+
+// View Employees
+const viewEmployees = () => {};
 
 //   * Add departments,
 const addDepartments = () => {
@@ -148,3 +159,7 @@ const addEmployee = () => {
       );
     });
 };
+
+// UPDATE Employee Roles
+
+const updateRoles = () => {};
