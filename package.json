@@ -1,20 +1,25 @@
 {
-  "name": "employeeTracker",
+  "name": "employeetracker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinJWesley/employeeTracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KevinJWesley/employeeTracker/issues"
+  },
+  "homepage": "https://github.com/KevinJWesley/employeeTracker#readme",
   "dependencies": {
     "console.table": "^0.10.0",
     "inquirer": "^8.1.0",
-    "mysql": "^2.18.1",
-    "node-modules": "^1.0.1",
-    "package-name": "^0.1.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "mysql": "^2.18.1"
+  }
 }
