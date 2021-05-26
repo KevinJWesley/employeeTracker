@@ -3,7 +3,7 @@
 ## Description
 - Using command line prompts, we can view, add and update employees, departments and roles that are recorded and retrieved from an SQL database
 - The project was built to easily add, view and update employees roles
-- Learned more about nack end devolopment using mySQL and Inquirer.
+- Learned more about back end devolopment using mySQL and Inquirer.
 
 
 ## Usage
