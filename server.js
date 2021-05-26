@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
+const { connect } = require("http2");
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -19,6 +20,8 @@ connection.connect((err) => {
   start();
 });
 
+const time = 2000;
+
 // Build a command-line application that at a minimum allows the user to:
 
 // Add departments, roles, employees
@@ -36,6 +39,8 @@ const start = () => {
       message: "What would you like to do?",
       choices: [
         "View Departments",
+        "View Roles",
+        "View Employees",
         "Add Departments",
         "Add Roles",
         "Add Employee",
@@ -53,6 +58,10 @@ const start = () => {
         addEmployee();
       } else if (answer.mainmenu === "Update Roles") {
         updateRoles();
+      } else if (answer.mainmenu === "View Roles") {
+        viewRoles();
+      } else if (answer.mainmenu === "View Employees") {
+        viewEmployees();
       } else {
         connection.end();
       }
@@ -60,15 +69,35 @@ const start = () => {
 };
 
 // * View Departments
+
 const viewDepartments = () => {
-  inquirer.prompt({});
+  connection.query("SELECT * FROM department", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    setTimeout(start, time);
+    // start();
+  });
 };
 
 // View Roles
-const viewRoles = () => {};
+const viewRoles = () => {
+  connection.query("SELECT * FROM role", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    setTimeout(start, time);
+    // start();
+  });
+};
 
 // View Employees
-const viewEmployees = () => {};
+const viewEmployees = () => {
+  connection.query("SELECT * FROM employee", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    setTimeout(start, time);
+    // start();
+  });
+};
 
 //   * Add departments,
 const addDepartments = () => {
@@ -138,10 +167,14 @@ const addEmployee = () => {
         name: "lastName",
         message: "What is employee's last name?",
       },
-      // { FIND A AWAY TO ADD DEPT ID(ROLE ID)
-      //   name: "roleID",
-      //   message: "What is their department ID number?",
-      // },
+      {
+        name: "roleId",
+        message: "What is your Role ID number?",
+      },
+      {
+        name: "managerId",
+        message: "What is your namager ID number?",
+      },
     ])
     .then((answer) => {
       connection.query(
@@ -149,8 +182,8 @@ const addEmployee = () => {
         {
           first_name: answer.firstName,
           last_name: answer.lastName,
-          // insert dept id??
-          // department_id: answer.depId,
+          role_id: answer.roleId,
+          manager_id: answer.managerId,
         },
         (err) => {
           if (err) throw err;
