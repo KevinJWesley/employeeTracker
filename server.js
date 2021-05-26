@@ -195,4 +195,39 @@ const addEmployee = () => {
 
 // UPDATE Employee Roles
 
-const updateRoles = () => {};
+const updateRoles = () => {
+  inquirer
+    .prompt([
+      {
+        name: "firstName",
+        message: "What is employee's first name?",
+      },
+      {
+        name: "lastName",
+        message: "What is employee's last name?",
+      },
+      {
+        name: "roleId",
+        message: "What is your Role ID number?",
+      },
+      {
+        name: "managerId",
+        message: "What is your namager ID number?",
+      },
+    ])
+    .then((answer) => {
+      connection.query(
+        "INSERT INTO employee SET ?",
+        {
+          first_name: answer.firstName,
+          last_name: answer.lastName,
+          role_id: answer.roleId,
+          manager_id: answer.managerId,
+        },
+        (err) => {
+          if (err) throw err;
+          start();
+        }
+      );
+    });
+};
